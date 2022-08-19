@@ -11,7 +11,7 @@ describe('Deep Merge testing', () => {
     });
 
     it('3. Expects {} and null to be null', () => {
-        expect(deepMerge({}, null)).to.equal(null);    
+        expect(deepMerge({}, null)).to.equal(null);
     });
 
     it('4. Expects [] and [] with primitives to be equal new array', () => {
@@ -22,7 +22,7 @@ describe('Deep Merge testing', () => {
             )
         ).to.deep.equal(
             [3, 'sdf', null, [undefined], 0, 4, 5, 'hhhh', undefined]
-        );    
+        );
     });
 
     it('5. Expects deep merge array with copy', () => {
@@ -44,7 +44,13 @@ describe('Deep Merge testing', () => {
         ).to.deep.equal(
             {a: 5, b: 6, c: 7}
         );
-        
+
+        expect(
+            deepMerge({a: 1, b: 3, c: 4}, {a: 5})
+        ).to.deep.equal(
+            {a: 5, b: 3, c: 4}
+        );
+
         expect(
             deepMerge({a: 1, c: {j: 1, b: 2}}, {a: 5, b: 6, c: {j: 2, h: 7}})
         ).to.deep.equal(
